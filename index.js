@@ -1,6 +1,9 @@
+// TODO: Agregar token en git bash
+// TODO: Volver a configurar Eslint y pretifier
+// TODO: Agregar Amazon, Mediamarkt, Fnac, CorteIngles
 const { chromium } = require('playwright')
 const maximumPrice = 599
-const shops = [ //Agregar Amazon, Mediamarkt, Fnac, CorteIngles
+const shops = [
   {
     vendor: 'PcComponentes',
     url: 'https://www.pccomponentes.com/lg-oled55cx3la-55-oled-ultrahd-4k',
