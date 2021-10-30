@@ -1,4 +1,3 @@
-// TODO: Agregar token en git bash
 // TODO: Volver a configurar Eslint y pretifier
 // TODO: Agregar Amazon, Mediamarkt, Fnac, CorteIngles
 const { chromium } = require('playwright')
