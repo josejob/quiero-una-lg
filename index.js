@@ -71,7 +71,7 @@ const shops = [
 ];
 
 (async () => {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: true });
   for (const shop of shops) {
     const { vendor, url, checkStock, checkPrice, getPrice } = shop;
 
