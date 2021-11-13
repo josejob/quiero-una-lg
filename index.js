@@ -1,5 +1,4 @@
 // TODO: Meter array URLs para procesar mas de una URL por vendor
-// TODO: Volver a configurar Eslint y pretifier
 // TODO: Agregar Amazon, Mediamarkt, Fnac, CorteIngles
 // Amazon:
 // https://www.amazon.es/LG-OLED55CX3LA-TELEVISOR-4K/dp/B08H5G6732
@@ -18,7 +17,7 @@
 // Ebay,es
 // https://www.ebay.es/itm/234174767693?hash=item3685e7624d:g:bVwAAOSwYmhhNfoo
 const { chromium } = require("playwright");
-const maximumPrice = 599;
+const maximumPrice = 1090;
 const shops = [
   {
     vendor: "PcComponentes",
