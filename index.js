@@ -101,6 +101,7 @@ const shops = [
         "No hay stock :( en " + vendor + " Precio: " + priceInWeb + "€"
       );
     }
+    await page.close();
   }
   await browser.close();
 })();
