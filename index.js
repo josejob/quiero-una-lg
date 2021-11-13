@@ -23,6 +23,7 @@ const shops = [
     vendor: "PcComponentes",
     url: "https://www.pccomponentes.com/lg-oled55cx3la-55-oled-ultrahd-4k",
     checkStock: async ({ page }) => {
+      await page.click("button.accept-cookie");
       const notifyMeButton = await page.$$(".notify-me");
       return !notifyMeButton.length > 0; // Si no hay NotifyMeButton y el precio es inferior a 1100€, entonces hay stock
     },
@@ -35,9 +36,53 @@ const shops = [
     },
   },
   {
-    vendor: "Amazon",
+    vendor: "Amazon1",
     url: "https://www.amazon.es/LG-OLED55CX3LA-TELEVISOR-4K/dp/B08H5G6732",
     checkStock: async ({ page }) => {
+      await page.click("#sp-cc-accept");
+      const addToCartButton = await page.$$("#add-to-cart-button");
+      return addToCartButton.length > 0; // Si hay add to cart button, entonces hay stock
+    },
+    checkPrice: async ({ page }) => {
+      const price = await page.textContent(
+        "span.a-price.a-text-price span.a-offscreen >> nth=0"
+      );
+      return price <= maximumPrice;
+    },
+    getPrice: async ({ page }) => {
+      return await page.textContent(
+        "span.a-price.a-text-price span.a-offscreen >> nth=0"
+      );
+    },
+  },
+  {
+    vendor: "Amazon2",
+    url: "https://www.amazon.es/LG-OLED55CX-ALEXA-Inteligencia-Artificial-Inteligente/dp/B086J31MRW",
+    checkStock: async ({ page }) => {
+      await page.click("#sp-cc-accept");
+      const addToCartButton = await page.$$("#add-to-cart-button");
+      return addToCartButton.length > 0; // Si hay add to cart button, entonces hay stock
+    },
+    checkPrice: async ({ page }) => {
+      const price = await page.textContent(
+        "span.a-price.a-text-price span.a-offscreen >> nth=0"
+      );
+      if (price.length > 0) return price <= maximumPrice;
+      else return false;
+    },
+    getPrice: async ({ page }) => {
+      const valuePrice = await page.textContent(
+        "span.a-price.a-text-price span.a-offscreen >> nth=0"
+      );
+      if (valuePrice.length > 0) return valuePrice;
+      else return "No hay precio";
+    },
+  },
+  {
+    vendor: "Amazon3",
+    url: "https://www.amazon.es/LG-TV-OLED-55CX6-UHD/dp/B086DCSC3P",
+    checkStock: async ({ page }) => {
+      await page.click("#sp-cc-accept");
       const addToCartButton = await page.$$("#add-to-cart-button");
       return addToCartButton.length > 0; // Si hay add to cart button, entonces hay stock
     },
@@ -76,13 +121,13 @@ const shops = [
 
     const page = await browser.newPage();
     await page.goto(url);
-    await page.screenshot({ path: "./screenshots/" + vendor + ".png" });
 
     const hasStock = await checkStock({ page });
-    const priceIsOk = await checkPrice({ page });
-    const priceInWeb = await getPrice({ page });
 
     if (hasStock) {
+      const priceIsOk = await checkPrice({ page });
+      const priceInWeb = await getPrice({ page });
+
       if (priceIsOk) {
         console.log(
           "Hay stock en " + vendor + " Precio OK!!!: " + priceInWeb + "€"
@@ -97,10 +142,9 @@ const shops = [
         );
       }
     } else {
-      console.log(
-        "No hay stock :( en " + vendor + " Precio: " + priceInWeb + "€"
-      );
+      console.log("No hay stock :( en " + vendor);
     }
+    await page.screenshot({ path: "./screenshots/" + vendor + ".png" });
     await page.close();
   }
   await browser.close();
