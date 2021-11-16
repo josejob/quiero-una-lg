@@ -1,5 +1,5 @@
 // TODO: Meter array URLs para procesar mas de una URL por vendor
-// TODO: Agregar Amazon, Mediamarkt, Fnac, CorteIngles AAA
+// TODO: Agregar Amazon, Mediamarkt, Fnac, CorteIngles AAAmmmm
 // Amazon:
 // https://www.amazon.es/LG-OLED55CX3LA-TELEVISOR-4K/dp/B08H5G6732
 // https://www.amazon.es/LG-OLED55CX-ALEXA-Inteligencia-Artificial-Inteligente/dp/B086J31MRW
