@@ -2,7 +2,7 @@
 const { chromium } = require("playwright");
 
 (async () => {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: true });
 
   const context = await browser.newContext({
     geolocation: { longitude: 41.411338, latitude: 2.197971 },
