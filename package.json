@@ -32,16 +32,9 @@
       "pre-commit": "lint-staged"
     }
   },
-  "eslintConfig": {
-    "extends": "standard"
-  },
   "dependencies": {},
   "lint-staged": {
     "*.js": "eslint --cache --fix",
-    "*.{js,css}": "prettier --write"
-  },
-  "eslintConfig ":{
-    "semi": false,
-    "singleQuote": true
+    "*.{js,css,md}": "prettier --write"
   }
 }
