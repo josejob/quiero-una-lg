@@ -4,18 +4,27 @@ const fs = require("fs");
 const fileUserCredentials = "./user.json";
 const defaultUsername = "11111111A";
 const defaultPassword = "1111";
+const defaultLongitude = 41.111111;
+const defaultlatitude = 2.111111;
 let userName = "";
 let userPasword = "";
+let userLongitude = "";
+let userLatitude = "";
 
 try {
   if (fs.existsSync(fileUserCredentials)) {
     const obj = JSON.parse(fs.readFileSync(fileUserCredentials, "utf8"));
     userName = obj.username;
     userPasword = obj.password;
+    userLongitude = obj.longitude;
+    userLatitude = obj.latitude;
   } else {
     userName = defaultUsername;
     userPasword = defaultPassword;
+    userLongitude = defaultLongitude;
+    userLatitude = defaultlatitude;
   }
+  console.log(userLongitude, userLatitude);
 } catch (err) {
   console.log(err);
 }
@@ -24,7 +33,7 @@ try {
   const browser = await chromium.launch({ headless: true });
 
   const context = await browser.newContext({
-    geolocation: { longitude: 41.411338, latitude: 2.197971 },
+    geolocation: { longitude: userLongitude, latitude: userLatitude },
     permissions: ["geolocation"],
   });
   const page = await context.newPage();
