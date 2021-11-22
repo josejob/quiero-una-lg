@@ -16,6 +16,7 @@ Crear el fichero user.json con la siguiente estructura:
         "username": "11111111A",
         "password": "1111"
     }
+
 Si no se crea el fichero user.json hara login con el usuario y password por defecto indicado en el fichero fichar.js
 
 Para fichar por las mañanas de forma automatica:
