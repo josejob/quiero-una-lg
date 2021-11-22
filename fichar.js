@@ -24,7 +24,6 @@ try {
     userLongitude = defaultLongitude;
     userLatitude = defaultlatitude;
   }
-  console.log(userLongitude, userLatitude);
 } catch (err) {
   console.log(err);
 }
