@@ -7,7 +7,7 @@
 ╚═╝     ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝ ╚══════╝
 https://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=FICHAJE
 
-Requisitos:
+Requisitos iniciales:
 Para que funcionen los scripts .bat, en el package.json deben aparecer dentro de scripts:
     "start": "node fichar.js"
 Hay que crear en la raiz del proyecto un fichero "user.json" que contenga el usuario y el password que va a realizar el login en la pagina del fichaje.
