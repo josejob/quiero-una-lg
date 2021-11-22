@@ -30,7 +30,6 @@ Para fichar por las tardes de forma automatica:
 2. En la tarea programada, agregar el fichero /scripts/fichaje_end.bat
 TODO: Probar si con la tarea programada arranca automaticamente el PC? En caso afirmativo, el start_up.bat se puede reemplazar y usar también para las mañanas el fichaje_end.bat
 
-
 ███████╗ ██████╗██████╗  █████╗ ██████╗ ██████╗ ███████╗██████╗ 
 ██╔════╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
 ███████╗██║     ██████╔╝███████║██████╔╝██████╔╝█████╗  ██████╔╝
