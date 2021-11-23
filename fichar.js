@@ -1,4 +1,4 @@
-// script para fichar prueba
+// script para fichar
 const { chromium } = require("playwright");
 const fs = require("fs");
 const fileUserCredentials = "./user.json";
