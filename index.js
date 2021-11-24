@@ -16,88 +16,88 @@
 // Mediamarkt: parece que no tienen ficha de la TV
 // Ebay,es
 // https://www.ebay.es/itm/234174767693?hash=item3685e7624d:g:bVwAAOSwYmhhNfoo
-const { chromium } = require("playwright");
-const maximumPrice = 1090;
+const { chromium } = require('playwright')
+const maximumPrice = 1090
 const shops = [
   {
-    vendor: "PcComponentes",
-    url: "https://www.pccomponentes.com/lg-oled55cx3la-55-oled-ultrahd-4k",
+    vendor: 'PcComponentes',
+    url: 'https://www.pccomponentes.com/lg-oled55cx3la-55-oled-ultrahd-4k',
     checkStock: async ({ page }) => {
-      await page.click("button.accept-cookie");
-      const notifyMeButton = await page.$$(".notify-me");
-      return !notifyMeButton.length > 0; // Si no hay NotifyMeButton y el precio es inferior a 1100€, entonces hay stock
+      await page.click('button.accept-cookie')
+      const notifyMeButton = await page.$$('.notify-me')
+      return !notifyMeButton.length > 0 // Si no hay NotifyMeButton y el precio es inferior a 1100€, entonces hay stock
     },
     checkPrice: async ({ page }) => {
-      const price = await page.textContent(".baseprice");
-      return price <= maximumPrice;
+      const price = await page.textContent('.baseprice')
+      return price <= maximumPrice
     },
     getPrice: async ({ page }) => {
-      return await page.textContent(".baseprice");
-    },
+      return await page.textContent('.baseprice')
+    }
   },
   {
-    vendor: "Amazon1",
-    url: "https://www.amazon.es/LG-OLED55CX3LA-TELEVISOR-4K/dp/B08H5G6732",
+    vendor: 'Amazon1',
+    url: 'https://www.amazon.es/LG-OLED55CX3LA-TELEVISOR-4K/dp/B08H5G6732',
     checkStock: async ({ page }) => {
-      await page.click("#sp-cc-accept");
-      const addToCartButton = await page.$$("#add-to-cart-button");
-      return addToCartButton.length > 0; // Si hay add to cart button, entonces hay stock
+      await page.click('#sp-cc-accept')
+      const addToCartButton = await page.$$('#add-to-cart-button')
+      return addToCartButton.length > 0 // Si hay add to cart button, entonces hay stock
     },
     checkPrice: async ({ page }) => {
       const price = await page.textContent(
-        "span.a-price.a-text-price span.a-offscreen >> nth=0"
-      );
-      return price <= maximumPrice;
+        'span.a-price.a-text-price span.a-offscreen >> nth=0'
+      )
+      return price <= maximumPrice
     },
     getPrice: async ({ page }) => {
       return await page.textContent(
-        "span.a-price.a-text-price span.a-offscreen >> nth=0"
-      );
-    },
+        'span.a-price.a-text-price span.a-offscreen >> nth=0'
+      )
+    }
   },
   {
-    vendor: "Amazon2",
-    url: "https://www.amazon.es/LG-OLED55CX-ALEXA-Inteligencia-Artificial-Inteligente/dp/B086J31MRW",
+    vendor: 'Amazon2',
+    url: 'https://www.amazon.es/LG-OLED55CX-ALEXA-Inteligencia-Artificial-Inteligente/dp/B086J31MRW',
     checkStock: async ({ page }) => {
-      await page.click("#sp-cc-accept");
-      const addToCartButton = await page.$$("#add-to-cart-button");
-      return addToCartButton.length > 0; // Si hay add to cart button, entonces hay stock
+      await page.click('#sp-cc-accept')
+      const addToCartButton = await page.$$('#add-to-cart-button')
+      return addToCartButton.length > 0 // Si hay add to cart button, entonces hay stock
     },
     checkPrice: async ({ page }) => {
       const price = await page.textContent(
-        "span.a-price.a-text-price span.a-offscreen >> nth=0"
-      );
-      if (price.length > 0) return price <= maximumPrice;
-      else return false;
+        'span.a-price.a-text-price span.a-offscreen >> nth=0'
+      )
+      if (price.length > 0) return price <= maximumPrice
+      else return false
     },
     getPrice: async ({ page }) => {
       const valuePrice = await page.textContent(
-        "span.a-price.a-text-price span.a-offscreen >> nth=0"
-      );
-      if (valuePrice.length > 0) return valuePrice;
-      else return "No hay precio";
-    },
+        'span.a-price.a-text-price span.a-offscreen >> nth=0'
+      )
+      if (valuePrice.length > 0) return valuePrice
+      else return 'No hay precio'
+    }
   },
   {
-    vendor: "Amazon3",
-    url: "https://www.amazon.es/LG-TV-OLED-55CX6-UHD/dp/B086DCSC3P",
+    vendor: 'Amazon3',
+    url: 'https://www.amazon.es/LG-TV-OLED-55CX6-UHD/dp/B086DCSC3P',
     checkStock: async ({ page }) => {
-      await page.click("#sp-cc-accept");
-      const addToCartButton = await page.$$("#add-to-cart-button");
-      return addToCartButton.length > 0; // Si hay add to cart button, entonces hay stock
+      await page.click('#sp-cc-accept')
+      const addToCartButton = await page.$$('#add-to-cart-button')
+      return addToCartButton.length > 0 // Si hay add to cart button, entonces hay stock
     },
     checkPrice: async ({ page }) => {
       const price = await page.textContent(
-        "span.a-price.a-text-price span.a-offscreen >> nth=0"
-      );
-      return price <= maximumPrice;
+        'span.a-price.a-text-price span.a-offscreen >> nth=0'
+      )
+      return price <= maximumPrice
     },
     getPrice: async ({ page }) => {
       return await page.textContent(
-        "span.a-price.a-text-price span.a-offscreen >> nth=0"
-      );
-    },
-  },
+        'span.a-price.a-text-price span.a-offscreen >> nth=0'
+      )
+    }
+  }
   // ,
   // {
   //   vendor: 'TESTPcComponentesConStock',
@@ -115,37 +115,37 @@ const shops = [
 ];
 
 (async () => {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: false })
   for (const shop of shops) {
-    const { vendor, url, checkStock, checkPrice, getPrice } = shop;
+    const { vendor, url, checkStock, checkPrice, getPrice } = shop
 
-    const page = await browser.newPage();
-    await page.goto(url);
+    const page = await browser.newPage()
+    await page.goto(url)
 
-    const hasStock = await checkStock({ page });
+    const hasStock = await checkStock({ page })
 
     if (hasStock) {
-      const priceIsOk = await checkPrice({ page });
-      const priceInWeb = await getPrice({ page });
+      const priceIsOk = await checkPrice({ page })
+      const priceInWeb = await getPrice({ page })
 
       if (priceIsOk) {
         console.log(
-          "Hay stock en " + vendor + " Precio OK!!!: " + priceInWeb + "€"
-        );
+          'Hay stock en ' + vendor + ' Precio OK!!!: ' + priceInWeb + '€'
+        )
       } else {
         console.log(
-          "Hay stock en " +
+          'Hay stock en ' +
             vendor +
-            " pero precio demasiado alto: " +
+            ' pero precio demasiado alto: ' +
             priceInWeb +
-            "€"
-        );
+            '€'
+        )
       }
     } else {
-      console.log("No hay stock :( en " + vendor);
+      console.log('No hay stock :( en ' + vendor)
     }
-    await page.screenshot({ path: "./screenshots/" + vendor + ".png" });
-    await page.close();
+    await page.screenshot({ path: './screenshots/' + vendor + '.png' })
+    await page.close()
   }
-  await browser.close();
-})();
+  await browser.close()
+})()
