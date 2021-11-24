@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "node index.js",
+    "lint": "eslint . --fix",
     "format": "standard --fix",
     "prepare": "husky install"
   },
@@ -13,6 +14,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-standard": "^5.0.0",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
     "playwright": "^1.16.1",
