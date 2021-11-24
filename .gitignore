@@ -1,5 +1,3 @@
 node_modules
 screenshots/*.png
-screenshots/fichar/*.png
 .eslintcache
-user.json
