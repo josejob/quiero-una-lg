@@ -116,10 +116,16 @@ const shops = [
 
 (async () => {
   const browser = await chromium.launch({ headless: false })
+  const context = await browser.newContext({
+    viewport: {
+      width: 1920,
+      height: 937
+    }
+  })
   for (const shop of shops) {
     const { vendor, url, checkStock, checkPrice, getPrice } = shop
 
-    const page = await browser.newPage()
+    const page = await context.newPage()
     await page.goto(url)
 
     const hasStock = await checkStock({ page })
